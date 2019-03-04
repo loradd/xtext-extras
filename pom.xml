@@ -20,7 +20,7 @@
         <module>org.eclipse.xtext.xbase.testing</module>
         <module>org.eclipse.xtext.xbase.testlanguages</module>
         <module>org.eclipse.xtext.xbase.testlanguages.ide</module>
-         <module>org.eclipse.xtext.common.types.tests</module>
+        <module>org.eclipse.xtext.common.types.tests</module>
         <module>org.eclipse.xtext.java.tests</module>
         <module>org.eclipse.xtext.purexbase.tests</module>
         <module>org.eclipse.xtext.builder.standalone.tests</module>
