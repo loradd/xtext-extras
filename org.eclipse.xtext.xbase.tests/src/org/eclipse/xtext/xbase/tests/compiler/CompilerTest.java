@@ -135,6 +135,8 @@ public class CompilerTest extends AbstractOutputComparingCompilerTests {
 	}
 	
 	@Test public void testImplicitReferenceToMultitype() throws Exception {
+		GeneratorConfig generatorConfig = generatorConfigProvider.get(null);
+		generatorConfig.setJavaSourceVersion(JavaVersion.JAVA5);
 		assertCompilesTo(
 				// TODO AbstractStringBuilder is package private and should not be part of the resolved type
 				"Iterable<AbstractStringBuilder> _plus = com.google.common.collect.Iterables.<AbstractStringBuilder>concat(((Iterable<StringBuilder>) null), ((Iterable<StringBuffer>) null));\n" + 
@@ -144,7 +146,8 @@ public class CompilerTest extends AbstractOutputComparingCompilerTests {
 				"  }\n" + 
 				"};\n" + 
 				"com.google.common.collect.Iterables.<Object>concat(_plus, ((Iterable<String>) null)).forEach(_function);", 
-				"((null as Iterable<StringBuilder>) + (null as Iterable<StringBuffer>) + (null as Iterable<String>)).forEach[ length ]");
+				"((null as Iterable<StringBuilder>) + (null as Iterable<StringBuffer>) + (null as Iterable<String>)).forEach[ length ]",
+				generatorConfig);
 	}
 	
 	@Test public void testReferenceToSynonym_01() throws Exception {
@@ -155,6 +158,8 @@ public class CompilerTest extends AbstractOutputComparingCompilerTests {
 	}
 	
 	@Test public void testImplicitReferenceToSynonym_01() throws Exception {
+		GeneratorConfig generatorConfig = generatorConfigProvider.get(null);
+		generatorConfig.setJavaSourceVersion(JavaVersion.JAVA5);
 		assertCompilesTo(
 				"final java.util.function.Consumer<String[]> _function = new java.util.function.Consumer<String[]>() {\n" + 
 				"  public void accept(final String[] it) {\n" + 
@@ -162,10 +167,13 @@ public class CompilerTest extends AbstractOutputComparingCompilerTests {
 				"  }\n" + 
 				"};\n" + 
 				"((Iterable<String[]>) null).forEach(_function);", 
-				"(null as Iterable<String[]>).forEach[ subList(1,1) ]");
+				"(null as Iterable<String[]>).forEach[ subList(1,1) ]",
+				generatorConfig);
 	}
 	
 	@Test public void testImplicitReferenceToSynonym_02() throws Exception {
+		GeneratorConfig generatorConfig = generatorConfigProvider.get(null);
+		generatorConfig.setJavaSourceVersion(JavaVersion.JAVA5);
 		assertCompilesTo(
 				"final java.util.function.Consumer<String[]> _function = new java.util.function.Consumer<String[]>() {\n" + 
 				"  public void accept(final String[] it) {\n" + 
@@ -173,10 +181,13 @@ public class CompilerTest extends AbstractOutputComparingCompilerTests {
 				"  }\n" + 
 				"};\n" + 
 				"((Iterable<String[]>) null).forEach(_function);", 
-				"(null as Iterable<String[]>).forEach[ size() ]");
+				"(null as Iterable<String[]>).forEach[ size() ]",
+				generatorConfig);
 	}
 	
 	@Test public void testImplicitReferenceToSynonymWithPrimitives() throws Exception {
+		GeneratorConfig generatorConfig = generatorConfigProvider.get(null);
+		generatorConfig.setJavaSourceVersion(JavaVersion.JAVA5);
 		assertCompilesTo(
 				"final java.util.function.Consumer<int[]> _function = new java.util.function.Consumer<int[]>() {\n" + 
 				"  public void accept(final int[] it) {\n" + 
@@ -184,10 +195,13 @@ public class CompilerTest extends AbstractOutputComparingCompilerTests {
 				"  }\n" + 
 				"};\n" + 
 				"((Iterable<int[]>) null).forEach(_function);", 
-				"(null as Iterable<int[]>).forEach[ subList(1,1) ]");
+				"(null as Iterable<int[]>).forEach[ subList(1,1) ]",
+				generatorConfig);
 	}
 	
 	@Test public void testImplicitReferenceToArray() throws Exception {
+		GeneratorConfig generatorConfig = generatorConfigProvider.get(null);
+		generatorConfig.setJavaSourceVersion(JavaVersion.JAVA5);
 		assertCompilesTo(
 				"final java.util.function.Consumer<String[]> _function = new java.util.function.Consumer<String[]>() {\n" + 
 				"  public void accept(final String[] it) {\n" + 
@@ -195,10 +209,13 @@ public class CompilerTest extends AbstractOutputComparingCompilerTests {
 				"  }\n" + 
 				"};\n" + 
 				"((Iterable<String[]>) null).forEach(_function);", 
-				"(null as Iterable<String[]>).forEach[ println(length) ]");
+				"(null as Iterable<String[]>).forEach[ println(length) ]",
+				generatorConfig);
 	}
 	
 	@Test public void testExplicitReferenceToSynonym_01() throws Exception {
+		GeneratorConfig generatorConfig = generatorConfigProvider.get(null);
+		generatorConfig.setJavaSourceVersion(JavaVersion.JAVA5);
 		assertCompilesTo(
 				"final java.util.function.Consumer<String[]> _function = new java.util.function.Consumer<String[]>() {\n" + 
 				"  public void accept(final String[] it) {\n" + 
@@ -206,10 +223,13 @@ public class CompilerTest extends AbstractOutputComparingCompilerTests {
 				"  }\n" + 
 				"};\n" + 
 				"((Iterable<String[]>) null).forEach(_function);", 
-				"(null as Iterable<String[]>).forEach[ it.subList(1,1) ]");
+				"(null as Iterable<String[]>).forEach[ it.subList(1,1) ]",
+				generatorConfig);
 	}
 	
 	@Test public void testExplicitReferenceToSynonym_02() throws Exception {
+		GeneratorConfig generatorConfig = generatorConfigProvider.get(null);
+		generatorConfig.setJavaSourceVersion(JavaVersion.JAVA5);
 		assertCompilesTo(
 				"final java.util.function.Consumer<String[]> _function = new java.util.function.Consumer<String[]>() {\n" + 
 				"  public void accept(final String[] it) {\n" + 
@@ -217,10 +237,13 @@ public class CompilerTest extends AbstractOutputComparingCompilerTests {
 				"  }\n" + 
 				"};\n" + 
 				"((Iterable<String[]>) null).forEach(_function);", 
-				"(null as Iterable<String[]>).forEach[ it.size ]");
+				"(null as Iterable<String[]>).forEach[ it.size ]",
+				generatorConfig);
 	}
 	
 	@Test public void testExplicitReferenceToSynonymWithPrimitives() throws Exception {
+		GeneratorConfig generatorConfig = generatorConfigProvider.get(null);
+		generatorConfig.setJavaSourceVersion(JavaVersion.JAVA5);
 		assertCompilesTo(
 				"final java.util.function.Consumer<int[]> _function = new java.util.function.Consumer<int[]>() {\n" + 
 				"  public void accept(final int[] it) {\n" + 
@@ -228,10 +251,13 @@ public class CompilerTest extends AbstractOutputComparingCompilerTests {
 				"  }\n" + 
 				"};\n" + 
 				"((Iterable<int[]>) null).forEach(_function);", 
-				"(null as Iterable<int[]>).forEach[ it.subList(1,1) ]");
+				"(null as Iterable<int[]>).forEach[ it.subList(1,1) ]",
+				generatorConfig);
 	}
 	
 	@Test public void testExplicitReferenceToArray() throws Exception {
+		GeneratorConfig generatorConfig = generatorConfigProvider.get(null);
+		generatorConfig.setJavaSourceVersion(JavaVersion.JAVA5);
 		assertCompilesTo(
 				"final java.util.function.Consumer<String[]> _function = new java.util.function.Consumer<String[]>() {\n" + 
 				"  public void accept(final String[] it) {\n" + 
@@ -239,7 +265,8 @@ public class CompilerTest extends AbstractOutputComparingCompilerTests {
 				"  }\n" + 
 				"};\n" + 
 				"((Iterable<String[]>) null).forEach(_function);", 
-				"(null as Iterable<String[]>).forEach[ println(it.length) ]");
+				"(null as Iterable<String[]>).forEach[ println(it.length) ]",
+				generatorConfig);
 	}
 	
 	@Test public void testFieldAccessDontGetAVariableDeclaration() throws Exception {
@@ -287,6 +314,8 @@ public class CompilerTest extends AbstractOutputComparingCompilerTests {
 	}
 	
 	@Test public void testBlockHasNoSuperfluousBraces_03() throws Exception {
+		GeneratorConfig generatorConfig = generatorConfigProvider.get(null);
+		generatorConfig.setJavaSourceVersion(JavaVersion.JAVA5);
 		assertCompilesTo(
 				"\n" + 
 				"final org.eclipse.xtext.xbase.lib.Procedures.Procedure1<Integer> _function = new org.eclipse.xtext.xbase.lib.Procedures.Procedure1<Integer>() {\n" + 
@@ -296,7 +325,8 @@ public class CompilerTest extends AbstractOutputComparingCompilerTests {
 				"  }\n" + 
 				"};\n" + 
 				"org.eclipse.xtext.xbase.lib.Procedures.Procedure1<? super Integer> fun = _function;", 
-				"{ var (int)=>void fun = [ int i | new Object() new Object() ] }");
+				"{ var (int)=>void fun = [ int i | new Object() new Object() ] }",
+				generatorConfig);
 	}
 	
 	@Test public void testBlockHasNoSuperfluousBraces_04() throws Exception {
@@ -710,13 +740,16 @@ public class CompilerTest extends AbstractOutputComparingCompilerTests {
 	}
 
 	@Test public void testExceptionOnClosure() throws Exception {
+		GeneratorConfig generatorConfig = generatorConfigProvider.get(null);
+		generatorConfig.setJavaSourceVersion(JavaVersion.JAVA5);
 		assertCompilesTo(
 				"final java.beans.VetoableChangeListener _function = new java.beans.VetoableChangeListener() {\n" + 
 				"  public void vetoableChange(final java.beans.PropertyChangeEvent it) throws java.beans.PropertyVetoException {\n" + 
 				"  }\n" + 
 				"};\n" + 
 				"final java.beans.VetoableChangeListener x = _function;",
-				"{val java.beans.VetoableChangeListener x = []}");
+				"{val java.beans.VetoableChangeListener x = []}",
+				generatorConfig);
 	}
 
 	@Test public void testArrayLiteralInForLoop() throws Exception {
@@ -779,90 +812,24 @@ public class CompilerTest extends AbstractOutputComparingCompilerTests {
 
 	@Test
 	public void testBug472265_01() throws Exception {
+		GeneratorConfig generatorConfig = generatorConfigProvider.get(null);
+		generatorConfig.setJavaSourceVersion(JavaVersion.JAVA5);
 		assertCompilesTo("final closures.IAcceptors.IAcceptor _function = new closures.IAcceptors.IAcceptor() {\n"
 		+ "  public void doSth(final String x) {\n"
 		+ "  }\n"
 		+ "};\n"
 		+ "closures.IAcceptors.IAcceptor a = _function;",
-		"{var closures.IAcceptors.IAcceptor a = [x|]}");
+		"{var closures.IAcceptors.IAcceptor a = [x|]}",
+		generatorConfig);
 	}
 	
 	@Test
 	public void testBug472265_02() throws Exception {
+		GeneratorConfig generatorConfig = generatorConfigProvider.get(null);
+		generatorConfig.setJavaSourceVersion(JavaVersion.JAVA5);
 		assertCompilesTo("final closures.IAcceptors.IAcceptor2 _function = new closures.IAcceptors.IAcceptor2() {\n"
 				+ "  public void doSth(final String[] x) {\n"
 				+ "  }\n"
-				+ "};\n"
-				+ "closures.IAcceptors.IAcceptor2 a = _function;",
-				"{var closures.IAcceptors.IAcceptor2 a = [x|]}");
-	}
-	
-	@Test
-	public void testBug472265_03() throws Exception {
-		assertCompilesTo("final closures.IAcceptors.IAcceptor3 _function = new closures.IAcceptors.IAcceptor3() {\n"
-				+ "  public void doSth(final String... x) {\n"
-				+ "  }\n"
-				+ "};\n"
-				+ "closures.IAcceptors.IAcceptor3 a = _function;",
-				"{var closures.IAcceptors.IAcceptor3 a = [x|]}");
-	}
-	
-	@Test
-	public void testBug472265_04() throws Exception {
-		assertCompilesTo("final closures.IAcceptors.IAcceptor4 _function = new closures.IAcceptors.IAcceptor4() {\n"
-				+ "  public void doSth(final String x, final String[] y) {\n"
-				+ "  }\n"
-				+ "};\n"
-				+ "closures.IAcceptors.IAcceptor4 a = _function;",
-				"{var closures.IAcceptors.IAcceptor4 a = [x,y|]}");
-	}
-	
-	@Test
-	public void testBug472265_05() throws Exception {
-		assertCompilesTo("final closures.IAcceptors.IAcceptor5 _function = new closures.IAcceptors.IAcceptor5() {\n"
-				+ "  public void doSth(final String x, final String... y) {\n"
-				+ "  }\n"
-				+ "};\n"
-				+ "closures.IAcceptors.IAcceptor5 a = _function;",
-				"{var closures.IAcceptors.IAcceptor5 a = [x,y|]}");
-	}
-	
-	@Test
-	public void testBug472265_06() throws Exception {
-		assertCompilesTo("final closures.IAcceptors.IAcceptor6 _function = new closures.IAcceptors.IAcceptor6() {\n"
-				+ "  public void doSth(final String[] x, final String[] y) {\n"
-				+ "  }\n"
-				+ "};\n"
-				+ "closures.IAcceptors.IAcceptor6 a = _function;",
-				"{var closures.IAcceptors.IAcceptor6 a = [x,y|]}");
-	}
-	
-	@Test
-	public void testBug472265_07() throws Exception {
-		assertCompilesTo("final closures.IAcceptors.IAcceptor7 _function = new closures.IAcceptors.IAcceptor7() {\n"
-				+ "  public void doSth(final String[] x, final String... y) {\n"
-				+ "  }\n"
-				+ "};\n"
-				+ "closures.IAcceptors.IAcceptor7 a = _function;",
-				"{var closures.IAcceptors.IAcceptor7 a = [x,y|]}");
-	}
-	
-	@Test
-	public void testBug472265_01_lamda() throws Exception {
-		GeneratorConfig generatorConfig = generatorConfigProvider.get(null);
-		generatorConfig.setJavaSourceVersion(JavaVersion.JAVA8);
-		assertCompilesTo("final closures.IAcceptors.IAcceptor _function = (String x) -> {\n"
-				+ "};\n"
-				+ "closures.IAcceptors.IAcceptor a = _function;",
-				"{var closures.IAcceptors.IAcceptor a = [x|]}",
-				generatorConfig);
-	}
-	
-	@Test
-	public void testBug472265_02_lamda() throws Exception {
-		GeneratorConfig generatorConfig = generatorConfigProvider.get(null);
-		generatorConfig.setJavaSourceVersion(JavaVersion.JAVA8);
-		assertCompilesTo("final closures.IAcceptors.IAcceptor2 _function = (String[] x) -> {\n"
 				+ "};\n"
 				+ "closures.IAcceptors.IAcceptor2 a = _function;",
 				"{var closures.IAcceptors.IAcceptor2 a = [x|]}",
@@ -870,10 +837,12 @@ public class CompilerTest extends AbstractOutputComparingCompilerTests {
 	}
 	
 	@Test
-	public void testBug472265_03_lamda() throws Exception {
+	public void testBug472265_03() throws Exception {
 		GeneratorConfig generatorConfig = generatorConfigProvider.get(null);
-		generatorConfig.setJavaSourceVersion(JavaVersion.JAVA8);
-		assertCompilesTo("final closures.IAcceptors.IAcceptor3 _function = (String... x) -> {\n"
+		generatorConfig.setJavaSourceVersion(JavaVersion.JAVA5);
+		assertCompilesTo("final closures.IAcceptors.IAcceptor3 _function = new closures.IAcceptors.IAcceptor3() {\n"
+				+ "  public void doSth(final String... x) {\n"
+				+ "  }\n"
 				+ "};\n"
 				+ "closures.IAcceptors.IAcceptor3 a = _function;",
 				"{var closures.IAcceptors.IAcceptor3 a = [x|]}",
@@ -881,10 +850,12 @@ public class CompilerTest extends AbstractOutputComparingCompilerTests {
 	}
 	
 	@Test
-	public void testBug472265_04_lamda() throws Exception {
+	public void testBug472265_04() throws Exception {
 		GeneratorConfig generatorConfig = generatorConfigProvider.get(null);
-		generatorConfig.setJavaSourceVersion(JavaVersion.JAVA8);
-		assertCompilesTo("final closures.IAcceptors.IAcceptor4 _function = (String x, String[] y) -> {\n"
+		generatorConfig.setJavaSourceVersion(JavaVersion.JAVA5);
+		assertCompilesTo("final closures.IAcceptors.IAcceptor4 _function = new closures.IAcceptors.IAcceptor4() {\n"
+				+ "  public void doSth(final String x, final String[] y) {\n"
+				+ "  }\n"
 				+ "};\n"
 				+ "closures.IAcceptors.IAcceptor4 a = _function;",
 				"{var closures.IAcceptors.IAcceptor4 a = [x,y|]}",
@@ -892,10 +863,12 @@ public class CompilerTest extends AbstractOutputComparingCompilerTests {
 	}
 	
 	@Test
-	public void testBug472265_05_lamda() throws Exception {
+	public void testBug472265_05() throws Exception {
 		GeneratorConfig generatorConfig = generatorConfigProvider.get(null);
-		generatorConfig.setJavaSourceVersion(JavaVersion.JAVA8);
-		assertCompilesTo("final closures.IAcceptors.IAcceptor5 _function = (String x, String... y) -> {\n"
+		generatorConfig.setJavaSourceVersion(JavaVersion.JAVA5);
+		assertCompilesTo("final closures.IAcceptors.IAcceptor5 _function = new closures.IAcceptors.IAcceptor5() {\n"
+				+ "  public void doSth(final String x, final String... y) {\n"
+				+ "  }\n"
 				+ "};\n"
 				+ "closures.IAcceptors.IAcceptor5 a = _function;",
 				"{var closures.IAcceptors.IAcceptor5 a = [x,y|]}",
@@ -903,10 +876,12 @@ public class CompilerTest extends AbstractOutputComparingCompilerTests {
 	}
 	
 	@Test
-	public void testBug472265_06_lamda() throws Exception {
+	public void testBug472265_06() throws Exception {
 		GeneratorConfig generatorConfig = generatorConfigProvider.get(null);
-		generatorConfig.setJavaSourceVersion(JavaVersion.JAVA8);
-		assertCompilesTo("final closures.IAcceptors.IAcceptor6 _function = (String[] x, String[] y) -> {\n"
+		generatorConfig.setJavaSourceVersion(JavaVersion.JAVA5);
+		assertCompilesTo("final closures.IAcceptors.IAcceptor6 _function = new closures.IAcceptors.IAcceptor6() {\n"
+				+ "  public void doSth(final String[] x, final String[] y) {\n"
+				+ "  }\n"
 				+ "};\n"
 				+ "closures.IAcceptors.IAcceptor6 a = _function;",
 				"{var closures.IAcceptors.IAcceptor6 a = [x,y|]}",
@@ -914,13 +889,71 @@ public class CompilerTest extends AbstractOutputComparingCompilerTests {
 	}
 	
 	@Test
-	public void testBug472265_07_lamda() throws Exception {
+	public void testBug472265_07() throws Exception {
 		GeneratorConfig generatorConfig = generatorConfigProvider.get(null);
-		generatorConfig.setJavaSourceVersion(JavaVersion.JAVA8);
-		assertCompilesTo("final closures.IAcceptors.IAcceptor7 _function = (String[] x, String... y) -> {\n"
+		generatorConfig.setJavaSourceVersion(JavaVersion.JAVA5);
+		assertCompilesTo("final closures.IAcceptors.IAcceptor7 _function = new closures.IAcceptors.IAcceptor7() {\n"
+				+ "  public void doSth(final String[] x, final String... y) {\n"
+				+ "  }\n"
 				+ "};\n"
 				+ "closures.IAcceptors.IAcceptor7 a = _function;",
 				"{var closures.IAcceptors.IAcceptor7 a = [x,y|]}",
 				generatorConfig);
+	}
+	
+	@Test
+	public void testBug472265_01_lamda() throws Exception {
+		assertCompilesTo("final closures.IAcceptors.IAcceptor _function = (String x) -> {\n"
+				+ "};\n"
+				+ "closures.IAcceptors.IAcceptor a = _function;",
+				"{var closures.IAcceptors.IAcceptor a = [x|]}");
+	}
+	
+	@Test
+	public void testBug472265_02_lamda() throws Exception {
+		assertCompilesTo("final closures.IAcceptors.IAcceptor2 _function = (String[] x) -> {\n"
+				+ "};\n"
+				+ "closures.IAcceptors.IAcceptor2 a = _function;",
+				"{var closures.IAcceptors.IAcceptor2 a = [x|]}");
+	}
+	
+	@Test
+	public void testBug472265_03_lamda() throws Exception {
+		assertCompilesTo("final closures.IAcceptors.IAcceptor3 _function = (String... x) -> {\n"
+				+ "};\n"
+				+ "closures.IAcceptors.IAcceptor3 a = _function;",
+				"{var closures.IAcceptors.IAcceptor3 a = [x|]}");
+	}
+	
+	@Test
+	public void testBug472265_04_lamda() throws Exception {
+		assertCompilesTo("final closures.IAcceptors.IAcceptor4 _function = (String x, String[] y) -> {\n"
+				+ "};\n"
+				+ "closures.IAcceptors.IAcceptor4 a = _function;",
+				"{var closures.IAcceptors.IAcceptor4 a = [x,y|]}");
+	}
+	
+	@Test
+	public void testBug472265_05_lamda() throws Exception {
+		assertCompilesTo("final closures.IAcceptors.IAcceptor5 _function = (String x, String... y) -> {\n"
+				+ "};\n"
+				+ "closures.IAcceptors.IAcceptor5 a = _function;",
+				"{var closures.IAcceptors.IAcceptor5 a = [x,y|]}");
+	}
+	
+	@Test
+	public void testBug472265_06_lamda() throws Exception {
+		assertCompilesTo("final closures.IAcceptors.IAcceptor6 _function = (String[] x, String[] y) -> {\n"
+				+ "};\n"
+				+ "closures.IAcceptors.IAcceptor6 a = _function;",
+				"{var closures.IAcceptors.IAcceptor6 a = [x,y|]}");
+	}
+	
+	@Test
+	public void testBug472265_07_lamda() throws Exception {
+		assertCompilesTo("final closures.IAcceptors.IAcceptor7 _function = (String[] x, String... y) -> {\n"
+				+ "};\n"
+				+ "closures.IAcceptors.IAcceptor7 a = _function;",
+				"{var closures.IAcceptors.IAcceptor7 a = [x,y|]}");
 	}
 }
