@@ -132,7 +132,7 @@ public class BatchLinkableResourceStorageLoadable extends ResourceStorageLoadabl
     }
   }
   
-  public BatchLinkableResourceStorageLoadable(final InputStream in, final boolean storeNodeModel) {
-    super(in, storeNodeModel);
+  public BatchLinkableResourceStorageLoadable(final InputStream arg0, final boolean arg1) {
+    super(arg0, arg1);
   }
 }

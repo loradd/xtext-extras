@@ -212,7 +212,7 @@ public class BatchLinkableResourceStorageWritable extends ResourceStorageWritabl
     return _xblockexpression;
   }
   
-  public BatchLinkableResourceStorageWritable(final OutputStream out, final boolean storeNodeModel) {
-    super(out, storeNodeModel);
+  public BatchLinkableResourceStorageWritable(final OutputStream arg0, final boolean arg1) {
+    super(arg0, arg1);
   }
 }
