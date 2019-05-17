@@ -15,32 +15,16 @@
 			<attribute name="test" value="true"/>
 		</attributes>
 	</classpathentry>
-<<<<<<< Upstream, based on origin/master
 	<classpathentry kind="src" path="longrunning/src">
-=======
-	<classpathentry kind="src" path="longrunning/xtend-gen">
->>>>>>> ca2d9b0 More tests.
 		<attributes>
 			<attribute name="test" value="true"/>
 		</attributes>
 	</classpathentry>
-<<<<<<< Upstream, based on origin/master
-	<classpathentry kind="src" path="xtend-gen">
-=======
-	<classpathentry kind="src" path="longrunning/src">
->>>>>>> ca2d9b0 More tests.
-		<attributes>
-			<attribute name="test" value="true"/>
-		</attributes>
-	</classpathentry>
-<<<<<<< Upstream, based on origin/master
-=======
 	<classpathentry kind="src" path="xtend-gen">
 		<attributes>
 			<attribute name="test" value="true"/>
 		</attributes>
 	</classpathentry>
->>>>>>> ca2d9b0 More tests.
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8"/>
 	<classpathentry kind="con" path="org.eclipse.pde.core.requiredPlugins"/>
 	<classpathentry kind="output" path="bin"/>
