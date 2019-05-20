@@ -8,13 +8,18 @@
 package org.eclipse.xtext.xbase.ide.contentassist
 
 import com.google.common.base.Predicate
-import java.lang.reflect.Modifier
-import org.eclipse.xtext.common.types.descriptions.ITypeDescriptor
+import org.eclipse.xtext.xbase.ide.types.ITypeDescriptor
+
+import static org.objectweb.asm.Opcodes.*
 
 final package class TypeFilters {
 	
 	public static val Predicate<ITypeDescriptor> NON_ABSTRACT = [ typeDesc |
-		!Modifier.isAbstract(typeDesc.modifiers) && !Modifier.isInterface(typeDesc.modifiers)
+		!typeDesc.accessFlags.contains(ACC_ABSTRACT) && !typeDesc.accessFlags.contains(ACC_INTERFACE)
 	]
+	
+	private static def contains(int flags, int code) {
+		flags.bitwiseAnd(code) != 0
+	}
 	
 }

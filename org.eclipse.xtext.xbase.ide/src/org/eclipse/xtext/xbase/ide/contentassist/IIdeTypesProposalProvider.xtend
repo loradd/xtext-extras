@@ -11,11 +11,11 @@ import com.google.common.base.Predicate
 import org.eclipse.emf.ecore.EReference
 import org.eclipse.xtext.ide.editor.contentassist.ContentAssistContext
 import org.eclipse.xtext.ide.editor.contentassist.IIdeContentProposalAcceptor
-import org.eclipse.xtext.common.types.descriptions.ITypeDescriptor
+import org.eclipse.xtext.xbase.ide.types.ITypeDescriptor
 
 interface IIdeTypesProposalProvider {
 	
-	def void createTypeProposals(EReference reference, ContentAssistContext context, Predicate<? super ITypeDescriptor> filter,
+	def void createTypeProposals(EReference reference, ContentAssistContext context, Predicate<ITypeDescriptor> filter,
 		IIdeContentProposalAcceptor acceptor)
 	 
 }

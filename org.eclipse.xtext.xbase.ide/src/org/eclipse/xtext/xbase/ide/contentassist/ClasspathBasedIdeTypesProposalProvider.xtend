@@ -10,11 +10,8 @@ package org.eclipse.xtext.xbase.ide.contentassist
 import com.google.common.base.Predicate
 import com.google.common.collect.Iterables
 import com.google.inject.Inject
-import java.lang.reflect.Modifier
 import java.util.Collections
 import org.eclipse.emf.ecore.EReference
-import org.eclipse.xtext.common.types.descriptions.ClasspathScanner
-import org.eclipse.xtext.common.types.descriptions.ITypeDescriptor
 import org.eclipse.xtext.ide.editor.contentassist.ContentAssistContext
 import org.eclipse.xtext.ide.editor.contentassist.ContentAssistEntry
 import org.eclipse.xtext.ide.editor.contentassist.IIdeContentProposalAcceptor
@@ -24,10 +21,13 @@ import org.eclipse.xtext.naming.IQualifiedNameConverter
 import org.eclipse.xtext.resource.XtextResourceSet
 import org.eclipse.xtext.util.ITextRegion
 import org.eclipse.xtext.util.ReplaceRegion
+import org.eclipse.xtext.xbase.ide.types.ClasspathScanner
+import org.eclipse.xtext.xbase.ide.types.ITypeDescriptor
 import org.eclipse.xtext.xbase.imports.IImportsConfiguration
 import org.eclipse.xtext.xbase.imports.ImportSectionRegionUtil
 import org.eclipse.xtext.xtype.XImportSection
 import org.eclipse.xtext.xtype.XtypePackage
+import org.objectweb.asm.Opcodes
 
 class ClasspathBasedIdeTypesProposalProvider implements IIdeTypesProposalProvider {
 	
@@ -45,7 +45,7 @@ class ClasspathBasedIdeTypesProposalProvider implements IIdeTypesProposalProvide
 	
 	@Inject ImportSectionRegionUtil importSectionRegionUtil
 	
-	override createTypeProposals(EReference reference, ContentAssistContext context, Predicate<? super ITypeDescriptor> filter,
+	override createTypeProposals(EReference reference, ContentAssistContext context, Predicate<ITypeDescriptor> filter,
 			IIdeContentProposalAcceptor acceptor) {
 		var ITextRegion importSectionRegion
 		var XImportSection importSection
@@ -87,12 +87,12 @@ class ClasspathBasedIdeTypesProposalProvider implements IIdeTypesProposalProvide
 		return classLoader
 	}
 	
-	protected def canPropose(ITypeDescriptor typeDesc, ContentAssistContext context, Predicate<? super ITypeDescriptor> filter) {
+	protected def canPropose(ITypeDescriptor typeDesc, ContentAssistContext context, Predicate<ITypeDescriptor> filter) {
 		isVisible(typeDesc, context) && filter.apply(typeDesc)
 	}
 	
 	protected def isVisible(ITypeDescriptor typeDesc, ContentAssistContext context) {
-		Modifier.isPublic(typeDesc.modifiers)
+		typeDesc.accessFlags.bitwiseAnd(Opcodes.ACC_PUBLIC) != 0
 	}
 	
 	protected def ContentAssistEntry createProposal(EReference reference, ITypeDescriptor typeDesc,
